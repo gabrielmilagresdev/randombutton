@@ -45,18 +45,10 @@ nclr = color
 circle = canvas.create_oval(xp, xp, yp, yp, fill=clr, outline="#000000", width=4)
 circle_shadow = canvas.create_oval(xs,xs,ys,ys,fill="#000000")
 canvas.tag_lower(circle_shadow, None) 
-text = canvas.create_text(300, 50, text="Click", fill=nclr, font=('Helvetica 15 bold'))
+text = canvas.create_text(tp,tp, text="Random Button", fill=nclr,font=("Arial", 14, "bold"))
 
 
 def on_click(event):
-    xp = 50
-    yp = 250
-    tp = 150
-    xs = 60
-    ys = 260
-    xpa = xp+10
-    ypa = yp+10
-    tpa = tp+10
     x, y = event.x, event.y
     ln1 = random.choice(n1)
     ln2 = random.choice(n2)
@@ -76,11 +68,11 @@ def on_click(event):
     nclr = color
     if not clr == nclr and xp <= x <= yp and xp <= y <= yp: 
         canvas.itemconfig(circle, fill=clr,)
-        canvas.itemconfig(text, fill=nclr )
+        canvas.itemconfig(text, fill=nclr)
         canvas.coords(circle,xpa,xpa,ypa,ypa)
+        canvas.coords(text,tpa,tpa)
         root.after(100, lambda: canvas.coords(circle,xp,xp,yp,yp))
-        root.after(200, lambda: canvas.coords(circle, xp,xp,yp,yp ))
-        root.after(0, lambda: canvas.coords(circle_shadow,xs,xs,ys,ys))
+        root.after(100, lambda: canvas.coords(text,tp,tp))
 canvas.bind("<Button-1>", on_click)
 
 root.mainloop()
