@@ -18,6 +18,7 @@ xpa = xp+10
 ypa = yp+10
 tpa = tp+10
 
+
 nf='#'
 n1 = ['0','1','2','3','4','5','6','7','8','9','F','E','D','C','B','A']
 n2 = ['0','1','2','3','4','5','6','7','8','9','F','E','D','C','B','A']
@@ -71,8 +72,13 @@ def on_click(event):
         canvas.itemconfig(text, fill=nclr)
         canvas.coords(circle,xpa,xpa,ypa,ypa)
         canvas.coords(text,tpa,tpa)
-        root.after(100, lambda: canvas.coords(circle,xp,xp,yp,yp))
-        root.after(100, lambda: canvas.coords(text,tp,tp))
-canvas.bind("<Button-1>", on_click)
+        root.after(9999999999999, lambda: canvas.coords(circle,xp,xp,yp,yp))
+        root.after(9999999999999, lambda: canvas.coords(text,tp,tp))
+def on_release(event):
+    canvas.coords(circle,xp,xp,yp,yp)
+    canvas.coords(text,tp,tp)
+    
 
+canvas.bind("<ButtonPress-1>", on_click)
+canvas.bind("<ButtonRelease-1>", on_release)
 root.mainloop()
